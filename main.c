@@ -6,7 +6,7 @@
 /*   By: lahlsweh <lahlsweh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:13:05 by lahlsweh          #+#    #+#             */
-/*   Updated: 2025/03/14 11:19:38 by lahlsweh         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:50:53 by lahlsweh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	write_heap_use_after_free(void);
 void	read_heap_use_after_free(void);
 void	double_free(void);
 void	stack_overflow(void);
-void	newtest(void);
 
 int	main(int argc, char **argv)
 {
@@ -60,8 +59,8 @@ int	main(int argc, char **argv)
 
 void	direct_leak(void)
 {
-	char *str;
-	
+	char	*str;
+
 	str = (char *)malloc(10 * sizeof(char));
 	return ;
 }
@@ -96,8 +95,9 @@ void	read_stack_buffer_overflow(void)
 
 void	segfault(void)
 {
-	int	*ptr = NULL;
+	int	*ptr;
 
+	ptr = NULL;
 	*ptr = 20;
 	return ;
 }
