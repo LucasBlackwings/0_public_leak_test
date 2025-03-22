@@ -27,7 +27,7 @@ void	stack_overflow(void);
 int	main(int argc, char **argv)
 {
 	printf("\nAvailable modes :\n\
-1 : Rest direct leak\n\
+1 : Test direct leak\n\
 2 : Test WRITE stack buffer overflow\n\
 3 : Test  READ stack buffer overflow\n\
 4 : Test SEGFAULT\n\
