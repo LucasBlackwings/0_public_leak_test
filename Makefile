@@ -1,30 +1,25 @@
-NAME = leaktest
-
-COMPILATOR = cc
-
-CFLAGS = -Wall -Wextra -Werror -I./includes -pedantic -g3
-OFLAGS = -Wall -Wextra -Werror -I./includes -pedantic -g3
+NAME = leak_test
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 DEBUG_FLAGS = -fsanitize=leak,address,undefined,integer,null,float-divide-by-zero
 
-FILES = main \
+SOURCES =	main.c
 
-SOURCES = $(foreach f, $(FILES), ./$(f).cpp)
-OBJECTS = $(foreach f, $(FILES), ./$(f).o)
+OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(COMPILATOR) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
-./%.o: ./sources/%.cpp
-	@mkdir -p $(dir $@)
-	$(COMPILATOR) $(OFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf ./*.o
+	rm -f $(OBJECTS)
 
-fclean: clean
-	rm -rf $(NAME)
+fclean:
+	rm -f $(NAME) $(OBJECTS)
 
 re: fclean all
 
