@@ -6,7 +6,7 @@
 /*   By: lahlsweh <lahlsweh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:13:05 by lahlsweh          #+#    #+#             */
-/*   Updated: 2025/03/19 10:50:53 by lahlsweh         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:51:32 by lahlsweh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	write_heap_use_after_free(void);
 void	read_heap_use_after_free(void);
 void	double_free(void);
 void	stack_overflow(void);
+void	conditional_jump(void);
 
 int	main(int argc, char **argv)
 {
@@ -34,7 +35,8 @@ int	main(int argc, char **argv)
 5 : Test WRITE heap use after free\n\
 6 : Test  READ heap use after free\n\
 7 : Test double free\n\
-8 : Test stack overflow\n\n");
+8 : Test stack overflow\n\
+9 : Test conditional jump\n\n");
 	if (argc == 2)
 	{
 		if (argv[1][0] == '1')
@@ -53,6 +55,8 @@ int	main(int argc, char **argv)
 			double_free();
 		else if (argv[1][0] == '8')
 			stack_overflow();
+		else if (argv[1][0] == '9')
+			conditional_jump();
 	}
 	return (0);
 }
@@ -144,6 +148,20 @@ void	stack_overflow(void)
 	while (breaker == 5)
 	{
 		stack_overflow();
+	}
+	return ;
+}
+
+void	conditional_jump(void)
+{
+	char	str[10];
+	int		i;
+
+	str[5] = 'c';
+	i = 0;
+	while (str[i] != 'c')
+	{
+		i++;
 	}
 	return ;
 }
